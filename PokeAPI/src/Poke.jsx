@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export default function Poke() {
   const [result, setResult] = useState({});
   const [pokemonData, setPokemonData] = useState([]);
 
-  const fetchData = () => {
+  useEffect(() => {
     fetch("https://pokeapi.co/api/v2/pokemon?limit=20")
       .then((response) => response.json())
       .then((result) => {
@@ -20,19 +21,16 @@ export default function Poke() {
       .catch((error) => {
         console.log(error);
       });
-  };
-  useEffect(() => {
-    fetchData();
   }, []);
-  console.log(pokemonData);
+
   return (
     pokemonData &&
-    pokemonData.map((poke) => (
-      <div key="pokeKey">
-        <a href="">
+    pokemonData.map((poke, index) => (
+      <div key={index}>
+        <Link to={`/PokeDetails/${poke.id}`}>
           <p>{poke.name}</p>
           <img src={poke.sprites.back_default} alt="" />
-        </a>
+        </Link>
       </div>
     ))
   );
