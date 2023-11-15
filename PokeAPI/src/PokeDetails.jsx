@@ -11,7 +11,6 @@ export default function PokeDetails() {
       .then((data) => setPokemonDet(data))
       .catch((err) => console.log(err));
   }, []);
-  console.log(pokemonDet);
 
   // Fetch pokemon details base on the ID prop
   // https://pokeapi.co/api/v2/pokemon/{id}/
@@ -22,7 +21,7 @@ export default function PokeDetails() {
   return (
     <div>
       <p>{pokemonDet.name}</p>
-      <img src={pokemonDet.sprites["back_default"]} alt="" />
+      <img src={pokemonDet?.sprites?.["back_default"]} alt="" />
     </div>
   );
 }
