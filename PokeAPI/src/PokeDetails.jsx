@@ -11,17 +11,18 @@ export default function PokeDetails() {
       .then((data) => setPokemonDet(data))
       .catch((err) => console.log(err));
   }, []);
-
-  // Fetch pokemon details base on the ID prop
-  // https://pokeapi.co/api/v2/pokemon/{id}/
-
-  // Fetch pokemon details base on the ID prop
-  // https://pokeapi.co/api/v2/pokemon/{id}/
-
+  console.log(pokemonDet);
   return (
     <div>
       <p>{pokemonDet.name}</p>
       <img src={pokemonDet?.sprites?.["back_default"]} alt="" />
+      <p>Weight : {pokemonDet.weight}Kg</p>
+      <p>Height : {pokemonDet.height}</p>
+
+      <h2>Abilities : </h2>
+      {pokemonDet?.abilities?.map((ability, index) => (
+        <p key={index}> {ability.ability.name}</p>
+      ))}
     </div>
   );
 }
