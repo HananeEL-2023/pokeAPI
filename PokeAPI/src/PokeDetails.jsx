@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Header from "./Header";
 
 export default function PokeDetails() {
   const params = useParams();
@@ -11,9 +12,10 @@ export default function PokeDetails() {
       .then((data) => setPokemonDet(data))
       .catch((err) => console.log(err));
   }, []);
-  console.log(pokemonDet);
+
   return (
     <div>
+      <Header />
       <p>{pokemonDet.name}</p>
       <img src={pokemonDet?.sprites?.["back_default"]} alt="" />
       <p>Weight : {pokemonDet.weight}Kg</p>
